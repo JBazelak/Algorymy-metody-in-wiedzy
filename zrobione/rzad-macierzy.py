@@ -1,5 +1,14 @@
 import numpy as np
 
+"""
+
+Poniżej znajduje sie funkcja licząca wyznacznik macierzy, 
+która wykorzystywana jest w funkcji wyznaczającej rząd macierzy.
+
+"""
+
+
+
 #definicja macierzy z zadania
 
 matrixA = np.array([[1, 1, 5],

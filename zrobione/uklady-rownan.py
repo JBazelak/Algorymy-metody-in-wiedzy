@@ -1,16 +1,39 @@
 import numpy as np
 
+"""
+
+Poniższy kod rozwiązuje układy równań metodą Cramera.
+Aby otrzymać rozwiązanie musimy przekazać funkcji
+solveEquations() macierz która zawiera stałe wartości
+wystepujace przy niewiadomych oraz szereg rozwiązań równań
+(wartości znajdujące sie za znakiem "=")
+
+Czyli jeżeli mamy równanie
+
+x + 2y + 3z = 5
+3x + 2y + z = 4
+
+(analogicznie do późniejszych deklaracji pierwszy argument zadeklrujemy nastepująco)
+
+matrixC = np.array([1, 2, 3],
+                    3, 2, 1)
+
+a drugi argument
+
+valuesC = [5, 4]
+
+"""
+matrixA = np.array([[3, 5],
+                    [1, 4]])
 
 matrixB = np.array([[1, 2, 3],
                     [3, 1, -3],
                     [-3, 4, 7]])
-matrixA = np.array([[3, 5],
-                    [1, 4]])
 
 
 
-constsantsB = [-5, 4, -7]
-constsantsA = [-7, 14]
+valuesA = [-7, 14]
+valuesB = [-5, 4, -7]
 
 
 def copyMatrix(matrix):
@@ -57,13 +80,13 @@ def solveEquations(matrix, consts):
 
 
 print("Macierz A")
-print(solveEquations(matrixA, constsantsA))
+print(solveEquations(matrixA, valuesA))
 print("Macierz B")
-print(solveEquations(matrixB, constsantsB))
+print(solveEquations(matrixB, valuesB))
 
 
 print("===FUNKCJE NUMPY===")
 print("a")
-print(np.linalg.solve(matrixA, constsantsA))
+print(np.linalg.solve(matrixA, valuesA))
 print("b")
-print(np.linalg.solve(matrixB, constsantsB))
+print(np.linalg.solve(matrixB, valuesB))
