@@ -10,10 +10,10 @@ X = dane_iris.data
 y = dane_iris.target
 
 # Przekształcenie danych na DataFrame dla wygody
-df = pd.DataFrame(data=np.c_[X, y], columns=dane_iris.feature_names + ['target'])
+df = pd.DataFrame(data=np.c_[X, y], columns=dane_iris.feature_names + ['gatunek'])
 
 # Podział danych na zbiór treningowy i testowy (70% treningowy, 30% testowy)
-X_trening, X_test, y_trening, y_test = train_test_split(df[dane_iris.feature_names], df['target'], test_size=0.3, random_state=42)
+X_trening, X_test, y_trening, y_test = train_test_split(df[dane_iris.feature_names], df['gatunek'], test_size=0.3)
 
 def dystans_euklidesowy(a, b):
     return np.sqrt(np.sum((a - b) ** 2))
@@ -41,16 +41,19 @@ def knn(liczba_sasiadow, X_trening, y_trening, X_test, metryka):
         przewidziane_klasy.append(najczestsza_klasa)
     return przewidziane_klasy
 
-# Parametr liczba_sasiadow = 3, różne metryki
-liczba_sasiadow = 3
+
+k = 5
 metryki = ['euklidesowy', 'manhattan', 'cosinusowy']
 wyniki = {}
 
 for metryka in metryki:
-    y_przewidziane = knn(liczba_sasiadow, X_trening, y_trening, X_test, metryka)
+    y_przewidziane = knn(k, X_trening, y_trening, X_test, metryka)
     dokladnosc = np.mean(y_przewidziane == y_test) * 100
     wyniki[metryka] = dokladnosc
     print(f'Metryka: {metryka}, Dokładność: {dokladnosc:.2f}%')
 
 # Wyświetlenie wyników
 print("Wyniki:", wyniki)
+
+
+
